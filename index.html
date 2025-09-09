@@ -79,9 +79,7 @@
         const loadingMessage = document.getElementById('loading-message');
         const errorMessage = document.getElementById('error-message');
 
-        // IMPORTANTE: REEMPLAZA ESTA URL CON LA QUE TE DÉ VERCEL
-        // DEBE TERMINAR EN /api/generar-imagen
-        const API_URL = 'https://tu-servidor-intermediario.com/api/generar-imagen';
+        const API_URL = 'https://generador-de-pictogramas.vercel.app/api/generar-imagen';
 
         async function generatePictogram() {
             const prompt = promptInput.value.trim();
@@ -123,3 +121,6 @@
                 loadingMessage.style.display = 'none';
             }
         }
+    </script>
+</body>
+</html>
