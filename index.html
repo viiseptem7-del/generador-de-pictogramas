@@ -57,6 +57,17 @@
             color: #f3e5b1;
             margin-top: 10px;
         }
+        #download-link {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #f3e5b1;
+            color: #464e49;
+            text-decoration: none;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -70,6 +81,8 @@
         <p class="error" id="error-message" style="display: none;"></p>
         <p class="loading" id="loading-message" style="display: none;">Generando...</p>
         <img id="pictogram-image" alt="Pictograma generado" style="display: none;">
+        <br>
+        <a id="download-link" style="display: none;" href="#" download="pictograma.png">Descargar</a>
     </div>
 
     <script>
@@ -78,6 +91,8 @@
         const pictogramImage = document.getElementById('pictogram-image');
         const loadingMessage = document.getElementById('loading-message');
         const errorMessage = document.getElementById('error-message');
+        const downloadLink = document.getElementById('download-link');
+
 
         const API_URL = 'https://generador-de-pictogramas.vercel.app/api/generar-imagen';
 
@@ -94,6 +109,7 @@
             loadingMessage.style.display = 'block';
             errorMessage.style.display = 'none';
             pictogramImage.style.display = 'none';
+            downloadLink.style.display = 'none';
 
             try {
                 const response = await fetch(API_URL, {
@@ -112,6 +128,8 @@
                 const data = await response.json();
                 pictogramImage.src = data.imageUrl;
                 pictogramImage.style.display = 'block';
+                downloadLink.href = data.imageUrl;
+                downloadLink.style.display = 'block';
                 
             } catch (error) {
                 errorMessage.textContent = `Error: Failed to fetch. Inténtalo de nuevo.`;
