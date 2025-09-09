@@ -17,9 +17,9 @@ module.exports = async (req, res) => {
   }
 
   // IMPORTANTE: Lee la clave de las variables de entorno de Vercel
-  const API_KEY = process.env.API_KEY; 
+  const API_KEY = process.env.CLAVE_CLIENTE;
   // La URL REAL de la API de OpenAI para generar imágenes
-  const REAL_API_URL = 'https://api.openai.com/v1/images/generations'; 
+  const REAL_API_URL = 'https://api.openai.com/v1/images/generations';
 
   try {
     const response = await fetch(REAL_API_URL, {
