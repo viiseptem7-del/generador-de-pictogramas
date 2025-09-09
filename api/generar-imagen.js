@@ -18,8 +18,8 @@ module.exports = async (req, res) => {
 
   // IMPORTANTE: Lee la clave de las variables de entorno de Vercel
   const API_KEY = process.env.API_KEY; 
-  // Reemplaza con la URL de la API de IA real que estés usando
-  const REAL_API_URL = 'URL_DE_LA_API_REAL'; 
+  // La URL REAL de la API de OpenAI para generar imágenes
+  const REAL_API_URL = 'https://api.openai.com/v1/images/generations'; 
 
   try {
     const response = await fetch(REAL_API_URL, {
@@ -29,6 +29,7 @@ module.exports = async (req, res) => {
         'Authorization': `Bearer ${API_KEY}`
       },
       body: JSON.stringify({
+        model: "dall-e-2", // Puedes usar "dall-e-3" si tienes acceso
         prompt: prompt,
         n: 1,
         size: "512x512"
@@ -37,6 +38,7 @@ module.exports = async (req, res) => {
 
     if (!response.ok) {
       const errorText = await response.text();
+      console.error('Error de OpenAI:', errorText); // Para depuración
       throw new Error(`Error de la API de IA: ${response.status} - ${errorText}`);
     }
 
